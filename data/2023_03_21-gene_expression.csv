@@ -1,0 +1,88 @@
+gene_expression,concentration,growth_factor,cell_type,treatment
+GL_CsE,0,5.51,Wild-type,Placebo
+GL_CsE,1,6.41,Wild-type,Placebo
+GL_CsE,2,5.71,Wild-type,Placebo
+GL_CsE,3,7.94,Wild-type,Placebo
+GL_CsE,4,6.87,Wild-type,Placebo
+GL_CsE,5,7.29,Wild-type,Placebo
+GL_CsE,6,10.04,Wild-type,Placebo
+GL_CsE,7,8.85,Wild-type,Placebo
+GL_CsE,8,8.91,Wild-type,Placebo
+GL_CsE,9,9.68,Wild-type,Placebo
+GL_CsE,10,11.43,Wild-type,Placebo
+GL_bNo,0,4.47,Wild-type,Placebo
+GL_bNo,1,5.12,Wild-type,Placebo
+GL_bNo,2,4.79,Wild-type,Placebo
+GL_bNo,3,5.86,Wild-type,Placebo
+GL_bNo,4,4.3,Wild-type,Placebo
+GL_bNo,5,5.82,Wild-type,Placebo
+GL_bNo,6,9.94,Wild-type,Placebo
+GL_bNo,7,9.02,Wild-type,Placebo
+GL_bNo,8,8.23,Wild-type,Placebo
+GL_bNo,9,8.37,Wild-type,Placebo
+GL_bNo,10,10.47,Wild-type,Placebo
+GL_JZC,0,9.1,Wild-type,Activating factor
+GL_JZC,1,11.88,Wild-type,Activating factor
+GL_JZC,2,15.21,Wild-type,Activating factor
+GL_JZC,3,18.41,Wild-type,Activating factor
+GL_JZC,4,23.81,Wild-type,Activating factor
+GL_JZC,5,25.1,Wild-type,Activating factor
+GL_JZC,6,28.75,Wild-type,Activating factor
+GL_JZC,7,30.99,Wild-type,Activating factor
+GL_JZC,8,36.33,Wild-type,Activating factor
+GL_JZC,9,36,Wild-type,Activating factor
+GL_JZC,10,41.7,Wild-type,Activating factor
+GL_fUg,0,9.69,Wild-type,Activating factor
+GL_fUg,1,12.82,Wild-type,Activating factor
+GL_fUg,2,14.78,Wild-type,Activating factor
+GL_fUg,3,18.27,Wild-type,Activating factor
+GL_fUg,4,21.24,Wild-type,Activating factor
+GL_fUg,6,24.25,Wild-type,Activating factor
+GL_fUg,7,29.11,Wild-type,Activating factor
+GL_fUg,8,32.79,Wild-type,Activating factor
+GL_fUg,9,32.69,Wild-type,Activating factor
+GL_fUg,10,36.38,Wild-type,Activating factor
+GL_jEK,0,5.35,Cell-type,Placebo
+GL_jEK,1,4.01,Cell-type,Placebo
+GL_jEK,2,8.53,Cell-type,Placebo
+GL_jEK,3,9.9,Cell-type,Placebo
+GL_jEK,4,11.66,Cell-type,Placebo
+GL_jEK,5,10.7,Cell-type,Placebo
+GL_jEK,6,13.65,Cell-type,Placebo
+GL_jEK,7,15.98,Cell-type,Placebo
+GL_jEK,8,16.74,Cell-type,Placebo
+GL_jEK,9,18.44,Cell-type,Placebo
+GL_jEK,10,20.21,Cell-type,Placebo
+GL_Hoe,0,5.81,Cell-type,Placebo
+GL_Hoe,1,6.58,Cell-type,Placebo
+GL_Hoe,2,9.28,Cell-type,Placebo
+GL_Hoe,3,10.71,Cell-type,Placebo
+GL_Hoe,4,13.67,Cell-type,Placebo
+GL_Hoe,5,13.48,Cell-type,Placebo
+GL_Hoe,6,15.2,Cell-type,Placebo
+GL_Hoe,7,17.65,Cell-type,Placebo
+GL_Hoe,8,19.01,Cell-type,Placebo
+GL_Hoe,9,19.93,Cell-type,Placebo
+GL_Hoe,10,24.47,Cell-type,Placebo
+GL_Rza,0,8.97,Cell-type,Activating factor
+GL_Rza,1,11.62,Cell-type,Activating factor
+GL_Rza,2,14.87,Cell-type,Activating factor
+GL_Rza,3,15.47,Cell-type,Activating factor
+GL_Rza,4,17.29,Cell-type,Activating factor
+GL_Rza,5,20.78,Cell-type,Activating factor
+GL_Rza,6,22.3,Cell-type,Activating factor
+GL_Rza,7,24.37,Cell-type,Activating factor
+GL_Rza,8,27.44,Cell-type,Activating factor
+GL_Rza,9,30.74,Cell-type,Activating factor
+GL_Rza,10,33.96,Cell-type,Activating factor
+GL_xpo,0,11.49,Cell-type,Activating factor
+GL_xpo,1,15.01,Cell-type,Activating factor
+GL_xpo,2,17.88,Cell-type,Activating factor
+GL_xpo,3,20.17,Cell-type,Activating factor
+GL_xpo,4,26.22,Cell-type,Activating factor
+GL_xpo,5,31.77,Cell-type,Activating factor
+GL_xpo,6,34.43,Cell-type,Activating factor
+GL_xpo,7,36.66,Cell-type,Activating factor
+GL_xpo,8,39.26,Cell-type,Activating factor
+GL_xpo,9,44.18,Cell-type,Activating factor
+GL_xpo,10,48.96,Cell-type,Activating factor
