@@ -1,0 +1,44 @@
+---
+title: "Gene Expression IMRaD Report"
+format: html
+editor: source
+author: "Vivienne Niejalke"
+date: "16 May 2023"
+execute: 
+  echo: false
+---
+
+```{r}
+pacman::p_load(lme4,ggplot2)
+
+#read in data
+gene<-read.csv(here::here("data/2023_03_21-gene_expression.csv"))
+```
+
+## Introduction
+
+The dataset is gene expression on growth factor based on treatments. The key parameters are treatment, concentration and cell type. The gene expression is evaluated with growth factor. The aim of this analysis is to make a predictive model for gene expression.
+
+## Methods
+
+I did the work in R using the lme4 package to make a linear mixed effect random effects model. Consider doing an AIC and commenting on why there is no cell type term.
+
+## Results
+Here are some nice plots.
+
+```{r}
+model_lme4<-lmer(growth_factor~(concentration|gene_expression)+ concentration+treatment,data=gene)
+
+#plot predictive model
+ggplot(gene,aes(x=concentration,y=growth_factor,color=gene_expression))+
+  geom_point()+
+  geom_line(aes(y=predict(model_lme4)))+
+  labs(
+    x="\u00b5g/ml",
+    y="Growth Factor (units)"
+  ) + ggtitle("Predictive Model for Gene Expression")
+
+```
+
+## Discussion
+The treatment is an important factor for gene expression.
