@@ -21,7 +21,7 @@ The dataset is gene expression on growth factor based on treatments. The key par
 
 ## Methods
 
-I did the work in R using the lme4 package to make a linear mixed effect random effects model. Consider doing an AIC and commenting on why there is no cell type term.
+I did the work in R using the lme4 package to make a linear mixed effect random effects model. Consider doing an AIC and commenting on why there is no cell type term. Show summary stats and that cell type isn't that important. Label plot better and include plot from previous assignment. Different shapes for treatment and cell type (distinguish in the plot)
 
 ## Results
 Here are some nice plots.
