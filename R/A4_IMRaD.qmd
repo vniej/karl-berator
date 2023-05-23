@@ -9,7 +9,7 @@ execute:
 ---
 
 ```{r}
-pacman::p_load(lme4,ggplot2)
+pacman::p_load(lme4,ggplot2,lmerTest)
 
 #read in data
 gene<-read.csv(here::here("data/2023_03_21-gene_expression.csv"))
@@ -23,20 +23,54 @@ The dataset is gene expression on growth factor based on treatments. The key par
 
 I did the work in R using the lme4 package to make a linear mixed effect random effects model. Consider doing an AIC and commenting on why there is no cell type term. Show summary stats and that cell type isn't that important. Label plot better and include plot from previous assignment. Different shapes for treatment and cell type (distinguish in the plot)
 
+I started with a certain type of model, used ANOVA to find what factors still matter and removed until a certain p-value RMSE
+
+
+Process by Jono
+- plots
+- compare terms
+- remove those you don't need
+- you can do a random slope and a random intercept
+- ranova for random
+- anova for fixed
+
+RS and AIC
+
 ## Results
 Here are some nice plots.
 
-```{r}
-model_lme4<-lmer(growth_factor~(concentration|gene_expression)+ concentration+treatment,data=gene)
+```{r, fig.cap="Linear Model"}
+model_1<-lmer(growth_factor~(concentration|gene_expression)+ concentration+treatment,data=gene)
+
+model_2<-lmer(growth_factor~(concentration|gene_expression)+ concentration*treatment*cell_type,data=gene)
+
+#interaction terms not significant
+model_21<-lmer(growth_factor~(concentration|gene_expression)+ concentration+treatment+cell_type,data=gene)
+
+model_3<-lmer(growth_factor~(1|gene_expression)+ concentration*treatment*cell_type,data=gene)
 
 #plot predictive model
 ggplot(gene,aes(x=concentration,y=growth_factor,color=gene_expression))+
   geom_point()+
-  geom_line(aes(y=predict(model_lme4)))+
+  geom_line(aes(y=predict(model_2)))+
   labs(
     x="\u00b5g/ml",
     y="Growth Factor (units)"
   ) + ggtitle("Predictive Model for Gene Expression")
+
+```
+
+```{r}
+
+ranova(model_1)
+ranova(model_2)
+summary(model_21)
+anova(model_3)
+#fitted vs residuals
+plot(model_lme42)
+
+#analyse it using AIC
+AIC(model_1,model_2,model_3,model_21)
 
 ```
 
