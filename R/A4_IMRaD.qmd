@@ -1,15 +1,17 @@
 ---
-title: "Gene Expression IMRaD Report"
+title: Gene Expression IMRaD Report
 format: html
 editor: source
-author: "Vivienne Niejalke"
-date: "16 May 2023"
+author: Vivienne Niejalke
+date: today
 execute: 
   echo: false
+bibliography: gene.bib
 ---
 
 ```{r}
-pacman::p_load(lme4,ggplot2,lmerTest)
+pacman::p_load(lme4,ggplot2,lmerTest,
+               RColorBrewer,ghibli)
 
 #read in data
 gene<-read.csv(here::here("data/2023_03_21-gene_expression.csv"))
@@ -17,62 +19,84 @@ gene<-read.csv(here::here("data/2023_03_21-gene_expression.csv"))
 
 ## Introduction
 
-The dataset is gene expression on growth factor based on treatments. The key parameters are treatment, concentration and cell type. The gene expression is evaluated with growth factor. The aim of this analysis is to make a predictive model for gene expression.
+The dataset contains 87 observations of an experiment testing the effects of a new treatment on gene expression. This data was provided by Dr Karl Berator, a research assistant at the Institute of -omics. The key variables were:
+
+- treatment: the new treatment was compared with a saline placebo, 
+- concentration: an integer between 0 and 10, measured in $\mu g/ml$, 
+- gene line: there were eight specific genes, and
+- cell type: each gene line was classified as Wild-type or Cell-type 101. 
+
+The aim was to investigate the effect of the growth factor on gene expression. This was evaluated by designing a predictive model for gene expression.
 
 ## Methods
 
-I did the work in R using the lme4 package to make a linear mixed effect random effects model. Consider doing an AIC and commenting on why there is no cell type term. Show summary stats and that cell type isn't that important. Label plot better and include plot from previous assignment. Different shapes for treatment and cell type (distinguish in the plot)
+The data was analysed using the packages `lme4` [@lme4-2023], `lmerTest` [@lmerTest-2023] and `ggplot2` [@ggplot2-2023] in R [@r-2023] in RStudio[^1].
 
-I started with a certain type of model, used ANOVA to find what factors still matter and removed until a certain p-value RMSE
+[^1]: https://www.rstudio.com
+
+The data was manually preprocessed to combine the data from for each gene line into one dataset.
+
+Firstly to better understand the data, an exploratory data analysis (EDA) was conducted to visualize the data using box plots and plots.
+
+Then, a linear random mixed effects model with a random intercept term was fitted to the data, with concentration, treatment and cell type as predictors and gene line as the random intercept term. The joint interaction term is significant due to the p-value less than 0.05.
+
+```{r}
+model_1<-lmer(growth_factor~(1|gene_expression)+ concentration*treatment*cell_type,data=gene)
 
 
-Process by Jono
-- plots
-- compare terms
-- remove those you don't need
-- you can do a random slope and a random intercept
-- ranova for random
-- anova for fixed
+```
 
-RS and AIC
+A linear random mixed effects model with a random slope was also fitted, with concentration, treatment and cell type as predictors and concentration per gene line as the random slope term.
 
-## Results
-Here are some nice plots.
-
-```{r, fig.cap="Linear Model"}
-model_1<-lmer(growth_factor~(concentration|gene_expression)+ concentration+treatment,data=gene)
-
+```{r}
 model_2<-lmer(growth_factor~(concentration|gene_expression)+ concentration*treatment*cell_type,data=gene)
 
-#interaction terms not significant
-model_21<-lmer(growth_factor~(concentration|gene_expression)+ concentration+treatment+cell_type,data=gene)
+#interaction terms not significant - becomes model 1 - need to remember backstep
+model_3<-lmer(growth_factor~(concentration|gene_expression)+ concentration+treatment,data=gene)
 
-model_3<-lmer(growth_factor~(1|gene_expression)+ concentration*treatment*cell_type,data=gene)
+```
+
+The factors of the two models were assessed using ranova for random effects and anova for fixed effects. The models were compared using the AIC (Akaike Information Criterion) to select the best model.
+
+## Results
+Figure 1 of the box plots show the gene expression of different gene lines and cell types. It shows that the treatment has a greater gene expression, however greater variability in the results.
+
+```{r, fig.cap="Box Plot of the Effect of Treatment and Cell Line on Gene Expression"}
+ggplot(gene,aes(x=treatment,y=growth_factor,fill=treatment,color=gene_expression))+geom_boxplot() +
+  facet_wrap(~cell_type)+scale_fill_ghibli_d(name="MononokeMedium",direction=-1)+scale_color_brewer(name="Gene",palette = "Dark2") +
+  labs(x="Treatment",y="Gene Expression")+
+  ggtitle("Effect of Treatment and Cell Line on Gene Expression")
+
+```
+
+The 'ranova' and 'anova' tests indicated that the models are suitable and all factors are relevent, especially due to the significance of the high order interaction terms. The table below indicates that 'model_2', the random slope mixed effects model with interaction terms is the better predictive model.
+
+```{r}
+#analyse it using AIC
+AIC(model_1,model_2,model_3)
+
+```
+
+The selected linear mixed effects model with a random slope is plotted below as the chosen predictive model.This shows that the gene expression is not only greater for genes with the treatment, but also increases as the concentration increases.
+
+```{r, fig.cap="Linear Mixed Effects Random Model"}
 
 #plot predictive model
 ggplot(gene,aes(x=concentration,y=growth_factor,color=gene_expression))+
-  geom_point()+
+  geom_point(aes(shape=treatment))+
   geom_line(aes(y=predict(model_2)))+
   labs(
     x="\u00b5g/ml",
-    y="Growth Factor (units)"
-  ) + ggtitle("Predictive Model for Gene Expression")
+    y="Gene Expression"
+  ) + ggtitle("Predictive Model for Gene Expression")+
+  scale_color_brewer(name="Gene",palette = "Dark2")
 
 ```
 
-```{r}
-
-ranova(model_1)
-ranova(model_2)
-summary(model_21)
-anova(model_3)
-#fitted vs residuals
-plot(model_lme42)
-
-#analyse it using AIC
-AIC(model_1,model_2,model_3,model_21)
-
-```
 
 ## Discussion
-The treatment is an important factor for gene expression.
+From the provided plots, it is illustrated that the treatment increased the growth factor of the gene expression for both cell types. Concentration, treatment and cell type are considered significant factors for the predictive model.
+
+The AIC results indicate that a linear mixed effects model with a random slope is better than a linear mixed effects model with only a random intercept. This means that the correlated concentration and gene line random effect is important to consider.
+
+## References

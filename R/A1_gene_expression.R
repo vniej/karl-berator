@@ -1,8 +1,7 @@
 pacman::p_load(tidyverse, ggplot2,harrypotter,RColorBrewer,ghibli)
 
 #read in data
-gene<-read.csv("C:/Users/AHS Student/Desktop/KarlBerator/data/2023_03_21-gene_expression.csv")
-gene
+gene<-read.csv(here::here("data/2023_03_21-gene_expression.csv"))
 
 #make linear regression models
 gene_lm<-lm(data=gene,growth_factor~as.factor(treatment)+concentration+as.factor(cell_type))
