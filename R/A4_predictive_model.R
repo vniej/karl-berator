@@ -7,8 +7,8 @@ pacman::p_load(ggplot,lmerTest,lme4)
 gene<-read.csv(here::here("karl-berator/data/2023_03_21-gene_expression.csv"))
 
 #fit model with lmer
-model_lme4<-lmer(growth_factor~(concentration|gene_expression)+ concentration+
-                   treatment,
+model_lme4<-lmer(growth_factor~(concentration|gene_expression)+ concentration*
+                   treatment*cell_type,
                  data=gene)
 
 #summary statistics and assumption checking
