@@ -31,4 +31,4 @@ A3 is the sample size calculation for the number needed for the experiment with 
 
 ### Predictive Model and IMRaD Report
 
-A4.qmd is the IMRaD report of a predictive model for gene expression. A4.R is an initial calculation for the random mixed effects model. This file can be ignored as the full process is in A4.qmd. The submitted IMRaD report is as a pdf.
+A4.qmd is the IMRaD report of a predictive model for gene expression. A4.R is an initial calculation for the random mixed effects model. This file can be ignored as the full process is in A4.qmd. The submitted IMRaD report is as a pdf in the presentations folder.
