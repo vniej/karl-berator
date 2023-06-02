@@ -1,12 +1,3 @@
----
-title: README
-format: html
-editor: source
-author: Vivienne Niejalke
-date: today
-execute: 
-  echo: false
----
 
 ## Project Overview
 The aim of this project is to investigate the effect of a new treatment on the growth factor of gene expression. The data was provided by Dr Karl Berator, a research assistant at the Institute of -omics. The outcomes included plots, a sample size calculation and an IMRaD report that has a predictive model for gene expression.
@@ -28,11 +19,11 @@ The code is ordered by A1-A4, which corresponds to the order the tasks were give
 
 ### Exploratory Data Analysis (EDA)
 
-A1 provides an initial EDA consisting of some stats and plots of the relationship between gene expression and treatment to feature in a powerpoint presentation. The figures are in the figs folder and the powerpoint is in the folder presentations. The data table in the powerpoint was produced by reading the stats off the box plots using fun.- fix this (fix A1 first)
+A1 provides an initial EDA consisting of some stats and plots of the relationship between gene expression and treatment to feature in a powerpoint presentation. The figures are in the figs folder and the powerpoint is in the folder presentations. The data table in the powerpoint was produced by reading the stats off the box plots by producing a function.
 
 ### Plot 
 
-A2 is the reproduction pf a provided gene plot so that the font is Times New Roman and the file format is a 500dpi tiff. The provided plot is in the folder resources. The font Times New Roman is available in the folder figs. The final plot is not uploaded to Github due to file size. This plot can be accessed [here](https://drive.google.com/file/d/1kPGf-NA2w1EzNAIo1YzWQnGgZrNmteIz/view?usp=sharing).
+A2 is the reproduction of a provided gene plot so that the font is Times New Roman and the file format is a 500dpi tiff. The provided plot is in the folder resources. The font Times New Roman is available in the folder figs. The final plot is not uploaded to Github due to file size. This plot can be accessed [here](https://drive.google.com/file/d/1kPGf-NA2w1EzNAIo1YzWQnGgZrNmteIz/view?usp=sharing).
 
 ### Sample Size Calculation
 
