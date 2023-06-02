@@ -1,6 +1,6 @@
 ---
 title: Gene Expression IMRaD Report
-format: html
+format: pdf
 editor: source
 author: Vivienne Niejalke
 date: today
