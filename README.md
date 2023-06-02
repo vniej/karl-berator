@@ -27,7 +27,7 @@ A2 is the reproduction of a provided gene plot so that the font is Times New Rom
 
 ### Sample Size Calculation
 
-A3 is the sample size calculation for the number needed for the experiment with a power of 90% and a significance of 5%. The process is explained in A3.R with the help of this [tutorial](https://data-se.netlify.app/2018/07/24/power-calculation-for-the-general-linear-model/).
+A3 is the sample size calculation for the number needed for the experiment with a power of 90% and a significance of 5%. The F-statistic to exlain the significance of the regression model is $$F=\frac{\frac{R^2}{k}}{\frac{1-R^2}{n-k-1}}$$ where $n$ is the total observations, $R^2$ is the coefficient of determination and $k$ is the number of regressors. The process to calculate the sample size is explained in A3.R with the help of this [tutorial](https://data-se.netlify.app/2018/07/24/power-calculation-for-the-general-linear-model/).
 
 ### Predictive Model and IMRaD Report
 
