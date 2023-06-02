@@ -1,3 +1,4 @@
+#load packages
 pacman::p_load(tidyverse, ggplot2,harrypotter,RColorBrewer,ghibli)
 
 #read in data
