@@ -10,6 +10,7 @@ bibliography: gene.bib
 ---
 
 ```{r}
+#load packages
 pacman::p_load(lme4,ggplot2,lmerTest,
                RColorBrewer,ghibli)
 
@@ -41,17 +42,18 @@ Firstly to better understand the data, an exploratory data analysis (EDA) was co
 Then, a linear random mixed effects model with a random intercept term was fitted to the data, with concentration, treatment and cell type as predictors and gene line as the random intercept term. The joint interaction term is significant due to the p-value less than 0.05.
 
 ```{r}
+#random effects mixed linear model with random intercept
 model_1<-lmer(growth_factor~(1|gene_expression)+ concentration*treatment*cell_type,data=gene)
-
 
 ```
 
 A linear random mixed effects model with a random slope was also fitted, with concentration, treatment and cell type as predictors and concentration per gene line as the random slope term.
 
 ```{r}
+#random slope with interaction terms
 model_2<-lmer(growth_factor~(concentration|gene_expression)+ concentration*treatment*cell_type,data=gene)
 
-#interaction terms not significant - becomes model 1 - need to remember backstep
+#random slope without interaction terms
 model_3<-lmer(growth_factor~(concentration|gene_expression)+ concentration+treatment,data=gene)
 
 ```
@@ -62,8 +64,12 @@ The factors of the two models were assessed using ranova for random effects and 
 Figure 1 of the box plots show the gene expression of different gene lines and cell types. It shows that the treatment has a greater gene expression, however greater variability in the results.
 
 ```{r, fig.cap="Box Plot of the Effect of Treatment and Cell Line on Gene Expression"}
-ggplot(gene,aes(x=treatment,y=growth_factor,fill=treatment,color=gene_expression))+geom_boxplot() +
-  facet_wrap(~cell_type)+scale_fill_ghibli_d(name="MononokeMedium",direction=-1)+scale_color_brewer(name="Gene",palette = "Dark2") +
+#plotting box plot with each gene line from A1
+ggplot(gene,aes(x=treatment,y=growth_factor,fill=treatment,color=gene_expression))+
+  geom_boxplot() +
+  facet_wrap(~cell_type)+
+  scale_fill_ghibli_d(name="MononokeMedium",direction=-1)+
+  scale_color_brewer(name="Gene",palette = "Dark2") +
   labs(x="Treatment",y="Gene Expression")+
   ggtitle("Effect of Treatment and Cell Line on Gene Expression")
 
@@ -72,7 +78,7 @@ ggplot(gene,aes(x=treatment,y=growth_factor,fill=treatment,color=gene_expression
 The 'ranova' and 'anova' tests indicated that the models are suitable and all factors are relevent, especially due to the significance of the high order interaction terms. The table below indicates that 'model_2', the random slope mixed effects model with interaction terms is the better predictive model.
 
 ```{r}
-#analyse it using AIC
+#analyse models using AIC
 AIC(model_1,model_2,model_3)
 
 ```
@@ -80,8 +86,7 @@ AIC(model_1,model_2,model_3)
 The selected linear mixed effects model with a random slope is plotted below as the chosen predictive model.This shows that the gene expression is not only greater for genes with the treatment, but also increases as the concentration increases.
 
 ```{r, fig.cap="Linear Mixed Effects Random Model"}
-
-#plot predictive model
+#plot predictive model with model 2 - random slope and interaction terms
 ggplot(gene,aes(x=concentration,y=growth_factor,color=gene_expression))+
   geom_point(aes(shape=treatment))+
   geom_line(aes(y=predict(model_2)))+
